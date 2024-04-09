@@ -19,12 +19,16 @@ $ pip install delay_finder
 Here are usage examples of two of our functions:
 ``` {python}
 import pandas as pd
+from delay_finder.filter_columns import filter_columns
+from delay_finder.replace_value import replace_value
+
+# Read in example data
 df = pd.read_csv('candy_example_data.csv')
 
-# Filter the data to only have columns 'candy' and 'amount'
+# Filter the example data to only have columns 'candy' and 'amount'
 filtered_df = filter_columns(df, ['candy', 'amount'])
 
-# Replace a value in a column, specifically 4 with 11 in the 'amount' column.
+# Replace a value in a column of the example data, specifically 4 with 11 in the 'amount' column.
 df_replace_kitkat_amount = replace_value(df, 'amount', 4, 11)
 ```
 
