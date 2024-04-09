@@ -1,12 +1,8 @@
 # read test
-import os
-import sys
 import pandas as pd
 import pytest
-
-# path import function
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.read import read
+import os
+from delay_finder.read import read
 
 # test data
 test_cases = [

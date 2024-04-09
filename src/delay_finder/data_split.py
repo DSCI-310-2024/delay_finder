@@ -42,8 +42,3 @@ def data_split(data, train_file_name, test_file_name):
     # Save the train and test sets into CSV files
     train.to_csv(train_file_name, index=False)
     test.to_csv(test_file_name, index=False)
-
-if __name__ == "__main__":
-    # Example usage
-    input_data = pd.read_csv("data/processed/01_filtered-data.csv")
-    data_split(input_data, "data/processed/train_data.csv", "data/processed/test_data.csv")

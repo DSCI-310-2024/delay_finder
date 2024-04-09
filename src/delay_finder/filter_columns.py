@@ -22,6 +22,7 @@ def filter_columns(data, columns_of_interest):
     ------
     ValueError:
         - If the columns_of_interest list is empty.
+        - If the data is empty
    
     KeyError:
         - If any of the specified columns do not exist in the DataFrame.
@@ -38,5 +39,8 @@ def filter_columns(data, columns_of_interest):
     1  2  5
     2  3  6
     """
-    
+    # check if columns_of_interest is empty
+    if len(columns_of_interest)==0:
+        raise ValueError("the columns_of_interest list is empty")
+
     return data[columns_of_interest]

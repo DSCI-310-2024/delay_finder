@@ -1,10 +1,7 @@
-#test split_data
-import os
 import pandas as pd
 import pytest
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.data_split import data_split
+import os
+from delay_finder.data_split import data_split
 
 @pytest.fixture
 def synthetic_data():

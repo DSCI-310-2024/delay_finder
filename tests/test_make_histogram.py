@@ -1,12 +1,7 @@
 import pandas as pd
 import altair as alt
 import pytest
-import sys
-import os
-
-# Import make_histogram function from src folder
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.make_histogram import make_histogram
+from delay_finder.make_histogram import make_histogram
 
 # Test data
 flight_df = pd.DataFrame({'flight':['waffle', 'ramen', 'ramen', 'wine', 'wine', 'wine', 'beer', 'pie']})

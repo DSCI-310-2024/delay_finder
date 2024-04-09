@@ -1,11 +1,8 @@
-import os
 import pandas as pd
-import sys
 import pickle
 import pytest
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.load_and_save import load_data, save_model
+import os
+from delay_finder.load_and_save import load_data, save_model
 
 @pytest.fixture
 def sample_data():
