@@ -4,7 +4,7 @@
 
 It has functions to more easily read CSV files into a dataframe, filter dataframe columns, replace a value in a dataframe, split data into 80/20 testing and training sets, save a model as a pickle object and file, and make a histogram visualizing a numeric feature.
 
-This package builds off of pandas, sci-kit learn, altair packages and Python's pickle library.
+This package builds off of [pandas](https://github.com/pandas-dev/pandas), [sci-kit learn](https://github.com/scikit-learn/scikit-learn), [altair](https://github.com/altair-viz/altair) packages and Python's [pickle](https://github.com/python/cpython/blob/main/Lib/pickle.py) library.
 
 ## Installation
 
