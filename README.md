@@ -40,7 +40,9 @@ Interested in contributing? Check out the contributing guidelines. Please note t
 
 ## License
 
-`delay_finder` was created by Siddharth Balodi, Charles Benkard, Mikel Ibarra Gallardo, and Stephanie Ta. It is licensed under the terms of the MIT license.
+`delay_finder` was created by Siddharth Balodi, Charles Benkard, Mikel Ibarra Gallardo, and Stephanie Ta. The code is licensed under the terms of the MIT license.  
+The usage examples file in licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).
+For more information, please see the license file.
 
 ## Credits
 
