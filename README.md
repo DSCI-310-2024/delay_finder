@@ -1,10 +1,10 @@
 # delay_finder
 
-`delay_finder` is DSCI 310 Group 17's package for analyzing, predicting, and visualizing data related to airline delay.
+`delay_finder` is DSCI 310 Group 17's Python package for analyzing, predicting, and visualizing data related to airline delay.
 
-It has functions to more easily read CSV files into a dataframe, filter dataframe columns, replace a value in a dataframe, split data into 80/20 testing and training sets, save a model as a pickle object and file, and make a histogram visualizing a numeric feature.
+It has functions to read CSV files into a dataframe, filter dataframe columns, replace a value in a dataframe, split data into 80/20 testing and training sets, save a model as a pickle object and file, and make a histogram visualizing a numeric feature.
 
-This package builds off of [pandas](https://github.com/pandas-dev/pandas), [sci-kit learn](https://github.com/scikit-learn/scikit-learn), [altair](https://github.com/altair-viz/altair) packages and Python's [pickle](https://github.com/python/cpython/blob/main/Lib/pickle.py) library.
+This package builds off of [pandas](https://github.com/pandas-dev/pandas), [sci-kit learn](https://github.com/scikit-learn/scikit-learn), [altair](https://github.com/altair-viz/altair) packages and Python's [pickle](https://github.com/python/cpython/blob/main/Lib/pickle.py) library and makes workflow more efficient in analyzing, predicting, and visualizing data related to airline delay.
 
 ## Installation
 
