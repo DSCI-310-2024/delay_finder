@@ -46,4 +46,5 @@ For more information, please see the license file.
 
 ## Credits
 
-`delay_finder` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+`delay_finder` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).  
+The documentation and ci-cd workflow was adapted from Daniel Chen's [pycounts-dan](https://github.com/chendaniely/pycounts-dan) repository.
