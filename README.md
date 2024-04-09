@@ -16,7 +16,19 @@ $ pip install delay_finder
 
 `delay_finder` has multiple functions that can be used to analyze and visualize airline delay data.
 
-For usage examples, please navigate to this [file in our repository](https://github.com/DSCI-310-2024/delay_finder/blob/main/docs/example.ipynb).
+Here are usage examples of two of our functions:
+``` {python}
+import pandas as pd
+df = pd.read_csv('candy_example_data.csv')
+
+# Filter the data to only have columns 'candy' and 'amount'
+filtered_df = filter_columns(df, ['candy', 'amount'])
+
+# Replace a value in a column, specifically 4 with 11 in the 'amount' column.
+df_replace_kitkat_amount = replace_value(df, 'amount', 4, 11)
+```
+
+For usage examples of each function, please navigate to this [file in our repository](https://github.com/DSCI-310-2024/delay_finder/blob/main/docs/example.ipynb).
 
 ## Contributing
 
