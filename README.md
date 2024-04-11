@@ -1,5 +1,9 @@
 # delay_finder
 
+[![codecov](https://codecov.io/gh/DSCI-310-2024/delay_finder/graph/badge.svg?token=uO4Pe7Dg7w)](https://codecov.io/gh/DSCI-310-2024/delay_finder)
+
+Authors: Siddharth Balodi, Charles Benkard, Mikel Ibarra Gallardo, and Stephanie Ta
+
 `delay_finder` is DSCI 310 Group 17's Python package for analyzing, predicting, and visualizing data related to airline delay.
 
 It has functions to read CSV files into a dataframe, filter dataframe columns, replace a value in a dataframe, split data into 80/20 testing and training sets, save a model as a pickle object and file, and make a histogram visualizing a numeric feature.
