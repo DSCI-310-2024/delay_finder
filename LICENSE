@@ -27,7 +27,7 @@ For the usage examples file in this repository.
 Example Usages © 2024, Siddharth Balodi, Charles Benkard, Mikel Ibarra Gallardo, and Stephanie Ta is licensed under CC BY 4.0
 
 ## MIT License
-GitHub Actions docs workflow template taken from Copyright (c) 2024, Daniel Chen.
+GitHub Actions docs and ci-cd workflow template taken from Copyright (c) 2024, Daniel Chen.
 
 For the portions of the project that are derived from [pycounts-dan]](https://github.com/chendaniely/pycounts-dan).
 Specifically the GitHub Actions docs workflow.
