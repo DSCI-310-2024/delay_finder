@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "delay_finder"
-version = "0.1.0"
+version = "1.0.0"
 description = "Analyze and predict airline delays!"
 authors = ["Siddharth Balodi, Charles Benkard, Mikel Ibarra Gallardo, and Stephanie Ta"]
 license = "MIT"
