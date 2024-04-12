@@ -2,6 +2,19 @@
 
 
 
+## v1.0.2 (2024-04-12)
+
+### Fix
+
+* fix: update poetry lock to reflect updates to pyproject.toml ([`64d37f6`](https://github.com/DSCI-310-2024/delay_finder/commit/64d37f6aba0d2d4ea010cabf64bcb62ef2dfc970))
+
+* fix: add semantic release tool so cd works ([`6b5d124`](https://github.com/DSCI-310-2024/delay_finder/commit/6b5d124f417dc4aac432bc98d0ae7574182c3790))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of github.com:DSCI-310-2024/delay_finder ([`19a9c40`](https://github.com/DSCI-310-2024/delay_finder/commit/19a9c404b225ae382943a884c2b67a870078d169))
+
+
 ## v1.0.1 (2024-04-11)
 
 ### Fix
