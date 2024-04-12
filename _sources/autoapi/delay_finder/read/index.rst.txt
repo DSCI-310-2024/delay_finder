@@ -1,0 +1,49 @@
+:py:mod:`delay_finder.read`
+===========================
+
+.. py:module:: delay_finder.read
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   delay_finder.read.read
+
+
+
+.. py:function:: read(file_name)
+
+   Using the relative path, reads the file and returns a data frame of said data.
+
+   Parameters:
+   ----------
+   file_name: string containing the relative path to a CSV file that will be read.
+
+   Returns:
+   -------
+   pd.DataFrame
+       DataFrame containing the information read form the CSV file.
+
+   Raises:
+   ------
+   FileNotFoundError:
+       - If the file does not exist.
+
+   pd.errors.EmptyDataError:
+       - If the file is empty.
+
+   Examples:
+   --------
+   >>> import pandas as pd
+   >>> import altair as alt
+   >>> df = read(filename) *replace filename with the name of the file and its relative path
+   >>> df.print
+
+
+

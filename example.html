@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example usage &mdash; delay_finder  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CHANGELOG" href="changelog.html" />
+    <link rel="prev" title="delay_finder" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            delay_finder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reading-in-data">Reading in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filtering-data">Filtering Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#replacing-a-value-in-a-dataframe">Replacing a Value in a DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#splitting-data">Splitting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#saving-a-trained-model-as-a-pickle-object-and-file">Saving a Trained Model as a Pickle Object and File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#histogram">Histogram</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">CHANGELOG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">delay_finder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Example usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/example.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-usage">
+<h1>Example usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h1>
+<p>Here we will demonstate how to use <code class="docutils literal notranslate"><span class="pre">delay_finder</span></code> in a project.</p>
+<p>First, we’ll import all of the functions of our package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">delay_finder.data_split</span> <span class="kn">import</span> <span class="n">data_split</span>
+<span class="kn">from</span> <span class="nn">delay_finder.filter_columns</span> <span class="kn">import</span> <span class="n">filter_columns</span>
+<span class="kn">from</span> <span class="nn">delay_finder.load_and_save</span> <span class="kn">import</span> <span class="n">save_model</span>
+<span class="kn">from</span> <span class="nn">delay_finder.make_histogram</span> <span class="kn">import</span> <span class="n">make_histogram</span>
+<span class="kn">from</span> <span class="nn">delay_finder.read</span> <span class="kn">import</span> <span class="n">read</span>
+<span class="kn">from</span> <span class="nn">delay_finder.replace_value</span> <span class="kn">import</span> <span class="n">replace_value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">delay_finder.data_split</span> <span class="kn">import</span> <span class="n">data_split</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">delay_finder.filter_columns</span> <span class="kn">import</span> <span class="n">filter_columns</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">delay_finder.load_and_save</span> <span class="kn">import</span> <span class="n">save_model</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;delay_finder&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note: All of our functions require importing the pandas library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="reading-in-data">
+<h2>Reading in Data<a class="headerlink" href="#reading-in-data" title="Link to this heading"></a></h2>
+<p>Our function <code class="docutils literal notranslate"><span class="pre">read()</span></code> can be used to read a CSV file and return a pandas DataFrame, using the relative path of the CSV file.</p>
+<p>We’ll load in some sample data using these functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;candy_example_data.csv&#39;</span><span class="p">)</span>
+<span class="n">df1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>candy</th>
+      <th>amount</th>
+      <th>wrapper_colour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kitkat</td>
+      <td>4</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mars</td>
+      <td>7</td>
+      <td>black</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>snickers</td>
+      <td>5</td>
+      <td>brown</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>skittles</td>
+      <td>3</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>smarties</td>
+      <td>9</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>aero</td>
+      <td>2</td>
+      <td>white</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>twix</td>
+      <td>6</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="filtering-data">
+<h2>Filtering Data<a class="headerlink" href="#filtering-data" title="Link to this heading"></a></h2>
+<p>Our function <code class="docutils literal notranslate"><span class="pre">filtering</span> <span class="pre">data()</span></code> can be used to keep specified columns (and drop the rest) in a pandas DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filtered_df</span> <span class="o">=</span> <span class="n">filter_columns</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;candy&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">])</span>
+<span class="n">filtered_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>candy</th>
+      <th>amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kitkat</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mars</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>snickers</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>skittles</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>smarties</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>aero</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>twix</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="replacing-a-value-in-a-dataframe">
+<h2>Replacing a Value in a DataFrame<a class="headerlink" href="#replacing-a-value-in-a-dataframe" title="Link to this heading"></a></h2>
+<p>Our function <code class="docutils literal notranslate"><span class="pre">replace_value()</span></code> can be used to replace a specified value in a pandas DataFrame with a new value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1_replace_kitkat_amount</span> <span class="o">=</span> <span class="n">replace_value</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">df1_replace_kitkat_amount</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>candy</th>
+      <th>amount</th>
+      <th>wrapper_colour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kitkat</td>
+      <td>11</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mars</td>
+      <td>7</td>
+      <td>black</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>snickers</td>
+      <td>5</td>
+      <td>brown</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>skittles</td>
+      <td>3</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>smarties</td>
+      <td>9</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>aero</td>
+      <td>2</td>
+      <td>white</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>twix</td>
+      <td>6</td>
+      <td>black</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="splitting-data">
+<h2>Splitting Data<a class="headerlink" href="#splitting-data" title="Link to this heading"></a></h2>
+<p>Our function <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code> can be used to split the input pandas DataFrame into training and testing sets with an 80/20 split. It also saves those sets to CSV files with the desired filenames.<br />
+This function requires importing scikit-learn’s <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">data_split</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="s1">&#39;train_data.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;test_data.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s view the resulting training and testing sets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">training_data</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;train_data.csv&#39;</span><span class="p">)</span>
+<span class="n">training_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>candy</th>
+      <th>amount</th>
+      <th>wrapper_colour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>kitkat</td>
+      <td>11</td>
+      <td>red</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>snickers</td>
+      <td>5</td>
+      <td>brown</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mars</td>
+      <td>7</td>
+      <td>black</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>twix</td>
+      <td>6</td>
+      <td>black</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>skittles</td>
+      <td>3</td>
+      <td>red</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">testing_data</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="s1">&#39;test_data.csv&#39;</span><span class="p">)</span>
+<span class="n">testing_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>candy</th>
+      <th>amount</th>
+      <th>wrapper_colour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>smarties</td>
+      <td>9</td>
+      <td>blue</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>aero</td>
+      <td>2</td>
+      <td>white</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="saving-a-trained-model-as-a-pickle-object-and-file">
+<h2>Saving a Trained Model as a Pickle Object and File<a class="headerlink" href="#saving-a-trained-model-as-a-pickle-object-and-file" title="Link to this heading"></a></h2>
+<p>Our function <code class="docutils literal notranslate"><span class="pre">save_model()</span></code> will save a model as a pickle object and file. This function requires importing Python’s pickle library.</p>
+<p>As an example, we will first make a dummy classifier. Then, we’ll save that model to a pickle object using <code class="docutils literal notranslate"><span class="pre">save_model()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">sklearn.dummy</span> <span class="kn">import</span> <span class="n">DummyClassifier</span>
+
+<span class="n">dummy_classifier</span> <span class="o">=</span> <span class="n">DummyClassifier</span><span class="p">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="s2">&quot;stratified&quot;</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">model_pickle</span> <span class="o">=</span> <span class="n">save_model</span><span class="p">(</span><span class="n">dummy_classifier</span><span class="p">,</span> <span class="s1">&#39;example_pickle_model.pickle&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="histogram">
+<h2>Histogram<a class="headerlink" href="#histogram" title="Link to this heading"></a></h2>
+<p>Our function <code class="docutils literal notranslate"><span class="pre">make_histogram()</span></code> can be used to make a histogram using a pandas DataFrame, the column name that will be on the x-axis, the x-axis title, and optionally the width and height of the desired histogram. This function requires importing the altair library and assumes that the y-axis denotes a number of flights.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+
+<span class="n">amount_histogram</span> <span class="o">=</span> <span class="n">make_histogram</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="s2">&quot;Amount&quot;</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">amount_histogram</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<style>
+  #altair-viz-1d23f18085ec427e840d34117f84105c.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-1d23f18085ec427e840d34117f84105c.vega-embed details,
+  #altair-viz-1d23f18085ec427e840d34117f84105c.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-1d23f18085ec427e840d34117f84105c"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-1d23f18085ec427e840d34117f84105c") {
+      outputDiv = document.getElementById("altair-viz-1d23f18085ec427e840d34117f84105c");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.16.3?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.16.3"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-b640a715bacc373a5e258321a2ff703c"}, "mark": {"type": "bar"}, "encoding": {"x": {"bin": {"maxbins": 30}, "field": "amount", "title": "Amount", "type": "quantitative"}, "y": {"aggregate": "count", "title": "Number of Flights", "type": "quantitative"}}, "height": 200, "width": 200, "$schema": "https://vega.github.io/schema/vega-lite/v5.16.3.json", "datasets": {"data-b640a715bacc373a5e258321a2ff703c": [{"candy": "kitkat", "amount": 11, "wrapper_colour": "red"}, {"candy": "mars", "amount": 7, "wrapper_colour": "black"}, {"candy": "snickers", "amount": 5, "wrapper_colour": "brown"}, {"candy": "skittles", "amount": 3, "wrapper_colour": "red"}, {"candy": "smarties", "amount": 9, "wrapper_colour": "blue"}, {"candy": "aero", "amount": 2, "wrapper_colour": "white"}, {"candy": "twix", "amount": 6, "wrapper_colour": "black"}]}}, {"mode": "vega-lite"});
+</script></div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="delay_finder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="CHANGELOG" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Siddharth Balodi, Charles Benkard, Mikel Ibarra Gallardo, and Stephanie Ta.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+:py:mod:`delay_finder.replace_value`
+====================================
+
+.. py:module:: delay_finder.replace_value
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   delay_finder.replace_value.replace_value
+
+
+
+.. py:function:: replace_value(dataframe, column, old_value, new_value)
+
+   Replaces a value in a column with a new value in a pandas DataFrame.
+   Returns a pandas DataFrame.
+
+   Parameters:
+   ----------
+   dataframe : pandas.DataFrame
+               The dataframe with the data.
+   column : str
+            The column in which a value is to be changed.
+   old_value : str, int, or float
+               The value that will be replaced.
+   new_value : str, int, or float
+               The value that is the replacement.
+
+   Returns:
+   -------
+   pandas.DataFrame
+       A DataFrame with a new specified value, that replaced the old specified value,
+       in the specified column
+
+   Raises:
+   ------
+   TypeError
+       If the input argument for:
+       - dataframe is not of type pandas.DataFrame
+       - column is not of type str
+       - old_value is not of type str, int, or float
+       - new_value is not of type str, int, or float
+   Exception
+       If the input argument
+       - column is not in the inputted pandas Dataframe
+       - old_value is not in the specified column
+
+   Examples:
+   --------
+   >>> import pandas as pd
+   >>> df = pd.read_csv('filename.csv') # Replace 'filename.csv' with your desired dataset filename
+   >>> result = replace_value(df, column_name, "old value", "new value")
+   >>> print(result)
+
+
+
